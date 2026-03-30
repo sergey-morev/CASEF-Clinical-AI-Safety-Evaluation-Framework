@@ -12,41 +12,40 @@ This repo demonstrates **FAIL artifacts by design**.
 
 In v0.3, CASEF uses a **severity-first gate path**.
 
-Canonical rule:
-- Any failure mapped to **S3** triggers **FAIL → NO_DEPLOY**.
+**Canonical rule (authoritative):**
+- Any failure mapped to **S3** in `measurement/risk_map.md` triggers **FAIL → NO_DEPLOY**.
 
-This is the authoritative deployment decision rule for v0.3.
+This rule is the single source of truth for deployment decisions in v0.3.
 
 ## Evidence and classification inputs
 
 In v0.3:
-- `hard_fail_type` may support classification,
-- `rater_label` may support classification,
-- validators may support classification where available,
+- `hard_fail_type`, `rater_label`, and validator outputs serve only as **evidence and classification inputs**.
+- They do **not** act as independent deployment decision engines.
 
-but these are treated as **evidence/classification inputs**, not separate deployment decision engines.
+The authoritative path remains:
 
-The authoritative path is:
+**observed failure → severity assignment (per `measurement/risk_map.md`) → gate outcome**
 
-**observed failure → severity assignment → gate outcome**
+Severity assignment in v0.3 is primarily manual (rater-driven) unless validators explicitly support it.
 
 ## Scope of v0.3
 
-v0.3 is a **gate-semantics patch**, not a full logging-schema redesign.
+v0.3 is strictly a **gate-semantics patch**.
 
-Therefore:
-- full schema unification of `hard_fail_type` vs `rater_label` is deferred,
-- validator expansion is deferred,
-- manual review remains valid where explicitly designed.
+It does **not** include:
+- logging schema redesign,
+- unification of `hard_fail_type` vs `rater_label`,
+- validator expansion beyond current capabilities.
+
+Full schema and automation cleanup is deferred to v0.4+ (see backlog).
 
 ## Relationship to governance
 
-`FAIL → NO_DEPLOY` means:
-- the behavior class is not acceptable for deployment in the corresponding high-stakes context
-- until corrected and re-qualified
+`FAIL → NO_DEPLOY` (triggered by S3) means the observed behavior class is unacceptable for deployment in the corresponding high-stakes context until corrected and re-qualified.
 
-CASEF provides qualification inputs and evidence packs.
-It does **not** replace QMS, QA, or regulatory review.
+CASEF produces qualification evidence and gates.  
+It does **not** replace domain governance, QMS, QA, or regulatory review.
 
 ## Canonical reference
 
