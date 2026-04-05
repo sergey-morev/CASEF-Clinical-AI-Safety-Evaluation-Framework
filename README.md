@@ -240,6 +240,22 @@ CASEF starts from a simple premise:
 
 The framework is designed to make failure visible, evidence portable, and evaluation decisions more defensible.
 
+## Conversational Audit Layer
+
+CASEF now includes an early conversational audit layer focused on:
+- uncertainty markers
+- abstain / escalate trace
+- operator accept / reject
+- provenance / source trace
+- final action trace
+- replayable audit records
+
+This layer extends CASEF from evaluation toward auditability and governed conversational use.
+It does not replace the core severity-first gate path or domain governance.
+See:
+- `measurement/conversation_audit_schema.md`
+- `examples/conversation_audit/`
+
 ---
 
 ## Recommended reading order
