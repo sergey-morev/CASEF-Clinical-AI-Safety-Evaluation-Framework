@@ -142,6 +142,14 @@ Additional label drift:
 | PRO-5 | **S1** | **No adoption surface**: no CONTRIBUTING, no CITATION.cff, no issue templates, no "add your own test case" tutorial, no example of a completed *governance decision memo* built from an evidence pack (the actual end deliverable buyers would pay attention to). |
 | PRO-6 | **S1** | Public-prompt contamination (SCI-3) is also a product problem: the framework's regression story ("compare deltas across model updates") is its main recurring-use case, and contamination erodes exactly that. |
 
+### 4.2b Strategic finding: relevance drift (single-turn vs agentic)
+
+| # | Severity | Finding |
+|---|---|---|
+| PRO-0 | **S3** | **CASEF qualifies what a model *says*; the 2026 deployment risk is what an agent *does* across a multi-step trajectory.** Every test in the repo assumes a single-turn textual output. Even the agency/autonomy modules (TC-L3-AGENCY-01, TC-L3-AUTONOMY-03) probe *claims about* actions, not actual tool-using behavior. The gap is not broken code or missing code — it is that the unit of evaluation is one layer below where the industry's evaluation problem now lives. |
+
+The framework's own vocabulary is already pointed at this (HALLUCINATED_ACTION, `final_action_trace`, `provenance_trace`, `replay_reference`) — extending the unit of evaluation from *response* to *trajectory* is an evolution of CASEF, not a new repo. Concretely: an **Agent Trajectory Audit Schema** — steps, tool calls, and evidence bound to each state-changing action — plus one hand-authored example trajectory and a schema validator. Scope guard: one scenario, hand-written; no agent-framework integration in the first cycle.
+
 ### 4.3 Recommended roadmap
 
 **v0.7 — "Consistency release" (1–2 days of focused work, highest ROI):**
@@ -154,7 +162,7 @@ Additional label drift:
 
 **v0.8 — measurement rigor:** sampling protocol (n≥5), rater/IRR protocol, format-vs-safety outcome split, contamination policy.
 
-**v0.9 — content:** Level 2 module (semantic invariance is the most clinically distinctive idea in the repo and currently has zero assets), related-work table, regulatory mapping doc.
+**v0.9 — content:** Level 2 module (semantic invariance is the most clinically distinctive idea in the repo and currently has zero assets), **first agentic qualification scenario** (trajectory schema + one worked example + validator, per §4.2b — the strategic move), related-work table, regulatory mapping doc.
 
 ---
 
@@ -166,6 +174,7 @@ Additional label drift:
 | INT-1 | S3 | Spec | TC-L1-JSON-01 exists as two different tests under one test_id |
 | SCI-1 | S3 | Method | n=1 sampling, no sampling protocol |
 | SCI-2 | S3 | Method | Rater-driven authoritative gate with no IRR/adjudication protocol |
+| PRO-0 | S3 | Product | Relevance drift: single-turn unit of evaluation; no agentic/trajectory scenarios |
 | PRO-1 | S3 | Product | "Clinical-grade" claim unsupported by current rigor |
 | TEC-2 | S2 | Code | Runner append-corrupts committed evidence file on rerun |
 | TEC-3 | S2 | Code | Runner output violates required log schema |
