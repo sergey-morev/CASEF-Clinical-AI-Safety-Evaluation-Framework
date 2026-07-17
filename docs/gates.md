@@ -37,7 +37,9 @@ Evidence is eligible only when every gate-policy requirement relevant to the dec
 
 Evidence eligibility is a prerequisite, not a model finding. Exclusion of an upstream record must remain explicit and traceable. A public redacted derivative cannot silently replace canonical source evidence.
 
-An unplanned diagnostic execution may be retained for diagnostics, but it cannot receive canonical qualification or be used as canonical wave evidence.
+An unplanned diagnostic execution may be retained for diagnostics, but it cannot receive canonical qualification or be used as canonical qualification evidence.
+
+`wave` is not a canonical record, identity, eligibility source, or gate-bearing concept in CASEF v0.6.1. An operational tool may later group manifests or runs into a wave, but that grouping cannot independently create evidence eligibility or qualification authority.
 
 ## 4. Finding provenance
 
@@ -124,7 +126,7 @@ Decision rules:
 | Required severity is undetermined | `REVIEW_REQUIRED` | A policy prerequisite is unresolved |
 | Deterministic constraint failed | May support `NOT_QUALIFIED` only through an explicit gate rule | Constraint outcome is not itself qualification |
 | Supported human finding is adverse | May support `NOT_QUALIFIED` only through an explicit gate rule | A finding is not itself qualification |
-| Execution was unplanned and diagnostic | Ineligible for canonical qualification | It is outside an approved wave plan |
+| Execution was unplanned and diagnostic | Ineligible for canonical qualification | It is outside an exact authorized immutable execution manifest |
 
 An evidence defect may prevent qualification, but it is not evidence of adverse model behavior. A negative qualification requires eligible evidence of the condition addressed by an explicit gate rule.
 

@@ -28,7 +28,7 @@ It references, but does not copy, the Context of Use, manifest, test where appli
 |---|---|---|
 | `schema_version` | Required | Exact supported version of this qualification-record contract; distinct from all test, manifest, record, protocol, Context-of-Use, and gate-policy versions |
 | `qualification_id` | Required | Unique identity of this immutable authorized decision execution |
-| `decision_type` | Required | Bounded decision-scope category defined by the applicable policy; it must not express a global model, provider, company, or product decision |
+| `decision_type` | Required | Bounded decision-scope category whose exact value must resolve in the versioned vocabulary of the applied gate policy bound by `gate_policy_id`, `gate_policy_version`, and `gate_policy_commit`; it must not express provider-wide, company-wide, product-wide, permanent-model, or general-safety scope |
 | `context_of_use_reference` | Required, non-null | Exact `context_id`, `context_version`, content reference, and content hash governed by `spec/context_of_use.md` |
 | `manifest_reference` | Conditionally required | Exact manifest identity, version, reference, and hash; required for `QUALIFIED` and `NOT_QUALIFIED`; may be null only for `REVIEW_REQUIRED` when the unresolved binding is recorded in `unmet_requirements` |
 | `test_reference` | Required where applicable | Exact test ID, test version, reference, and hash when the decision or an applied rule is test-specific |
@@ -56,6 +56,10 @@ It references, but does not copy, the Context of Use, manifest, test where appli
 | `supersession_reason` | Conditionally required | Bounded reason for supersession; required whenever `supersedes_qualification_id` is present and otherwise null or absent |
 
 All required timestamps use one canonical UTC representation defined by the future executable schema. This documentation does not select serialization syntax.
+
+### Decision-type policy binding
+
+CASEF v0.6.1 does not define a separate global `decision_type` enum. The exact value must be recognized by the applied gate-policy version identified by `gate_policy_id`, `gate_policy_version`, and `gate_policy_commit`. An unrecognized or unresolvable value is an unmet policy requirement and normally requires `qualification_outcome: REVIEW_REQUIRED`.
 
 ## 4. Exact reference structure
 
