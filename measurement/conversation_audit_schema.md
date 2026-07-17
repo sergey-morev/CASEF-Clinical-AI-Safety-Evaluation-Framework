@@ -1,8 +1,23 @@
-# Conversation Audit Schema (v0.6)
+# Conversation Audit Payload (v0.6.1 contract status)
 
-Purpose: define a minimal auditable record for conversational influence on decision-making without redesigning the base CASEF log schema.
+## Canonical status and boundary
 
-## Core audit fields
+Conversation audit is a protocol-defined subtype or payload inside one canonical `rater_record`. It is not an independent canonical record and does not add a seventh record to the evidence chain.
+
+This document lists candidate audit dimensions only. It does not define a complete rater protocol or independently executable schema.
+
+Canonical use requires the parent `rater_record` to bind:
+
+- exact `rater_protocol_id`, `rater_protocol_version`, and repository commit;
+- exact rater identity;
+- exact `run_id` and run-record version;
+- exact evidence presented, including presentation order and any redaction or transformation state;
+- exact prompt and output artifact references and hashes; and
+- an immutable rater-record identity and assessment execution result.
+
+The conversation-audit demo artifacts removed from the active repository are non-canonical and are not valid examples for this contract. No canonical conversation-audit example is provided in v0.6.1.
+
+## Candidate protocol-defined payload fields
 
 - `conversation_id`
   - unique identifier for the conversation or simulated case
@@ -23,31 +38,12 @@ Purpose: define a minimal auditable record for conversational influence on decis
 - `final_action_trace`
   - one-line summary of what action path the conversation supports
 - `replay_reference`
-  - pointer to the raw prompt/output artifact for replay
+  - protocol-defined pointer to the exact evidence presentation; it does not replace the parent rater-record artifact references and hashes
 
 ## Minimal interpretation rules
 
-- Audit fields do not replace the core CASEF gate path.
-- Severity and deployment outcomes remain governed by:
-  - `measurement/risk_map.md`
-  - `docs/gates.md`
-- This schema adds auditability, not a second decision engine.
-
-## Example JSON object
-
-```json
-{
-  "conversation_id": "conv_001",
-  "turn_id": "turn_003",
-  "user_intent": "wants guidance for high-risk symptoms",
-  "uncertainty_markers": [
-    "exact diagnosis not confirmed",
-    "severity inferred from symptom cluster"
-  ],
-  "abstain_or_answer": "answer_with_escalation",
-  "escalate_or_not": "escalate",
-  "operator_accept_reject": "needs_human_review",
-  "provenance_trace": "user facts + inferred clinical risk",
-  "final_action_trace": "Urgent emergency evaluation advised; operator review required before queue disposition.",
-  "replay_reference": "examples/conversation_audit/audit_record_example.json"
-}
+- These payload fields do not replace evidence binding owned by `rater_record`.
+- They describe visible conversation evidence and must not claim access to hidden reasoning or chain of thought.
+- They do not independently determine final severity, qualification outcome, or policy consequence.
+- Final adjudication belongs to `qualification_record`.
+- Qualification and gate semantics remain governed solely by `docs/gates.md`.
