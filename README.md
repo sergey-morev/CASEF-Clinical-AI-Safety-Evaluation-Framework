@@ -1,6 +1,6 @@
 # CASEF — Clinical AI Safety Evaluation Framework
 
-Physician-led, clinical-grade qualification framework for LLM safety and reliability.
+Physician-led qualification framework for LLM behavior in clinical-like and other high-stakes settings.
 
 **Core idea:**  
 CASEF treats LLM safety as a **qualification problem**, not a vibe, benchmark score, or alignment claim.
@@ -32,7 +32,7 @@ but:
 CASEF is designed for this layer.
 
 It is not a benchmark leaderboard.  
-It is a framework for producing **qualification-grade evidence**.
+It is a framework for structuring evidence for bounded qualification decisions.
 
 ---
 
@@ -104,70 +104,35 @@ CASEF is currently designed as a framework for:
 
 ---
 
-## Repository contents (v0.1)
+## Repository contents (v0.6.1 contract foundation)
 
-### Core documentation
+### Canonical authority and contracts
+- [`docs/canonical_evidence_contract.md`](docs/canonical_evidence_contract.md) — six-record ownership and evidence-chain authority
+- [`docs/gates.md`](docs/gates.md) — sole qualification and gate-semantics authority
+- [`spec/context_of_use.md`](spec/context_of_use.md) — mandatory bounded Context-of-Use contract
+- [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md) — documentation-level qualification-record contract
+
+### Supporting and historical documentation
 - `docs/casef_one_pager.md` — one-page overview
-- `measurement/log_schema.md` — minimal logging schema
-- `measurement/artifact_taxonomy.md` — artifact taxonomy
-- `redaction/guide.md` — redaction standard
+- `measurement/artifact_taxonomy.md` — artifact vocabulary
+- `measurement/log_schema.md` — superseded pre-canonical mixed log retained as historical material
+- `measurement/conversation_audit_schema.md` — candidate conversation-audit payload for a future protocol-defined `rater_record`
+- `redaction/guide.md` — redaction guidance
 - `spec/model_registry.md` — model/platform registry
-- `prompt_registry.md` — prompt registry
+- `spec/prompt_registry.md` — prompt registry
 
-### Execution / validation surface
-- `run_suite.py`
-- `validators.py`
-- `run_manifest.md`
-- `README_demo.md`
-
-### Example test assets
+### Current test assets
 - `TC-L1-JSON-01`
 - `TC-L1-COUNT-02`
 - `TC-L3-AGENCY-01`
 
-### Example result artifacts
-- `results.jsonl`
-- model/platform-specific captured outputs and run records
-
 ---
 
-## Minimal workflow
+## Current v0.6.1 implementation boundary
 
-### Manual flow
-1. Pick a test case or write one.
-2. Run it on a target model/platform.
-3. Save the exact input and exact observed output.
-4. Record a structured JSONL entry using `measurement/log_schema.md`.
-5. Label the observed artifact using `measurement/artifact_taxonomy.md`.
-6. Review the result against the intended constraint or failure condition.
-7. Preserve the run as evidence.
+CASEF v0.6.1 currently provides authoritative gate semantics and canonical contract documentation. It does not yet provide an executable canonical qualification pipeline, canonical evidence-generation workflow, or live qualification capability.
 
-### In plain language
-CASEF turns “I think this model failed” into:
-
-- a named test case,
-- a captured output,
-- a typed artifact,
-- a structured record,
-- and a defensible decision trail.
-
----
-
-## Example qualification logic
-
-### Example 1 — strict format failure
-**Test case:** model must return valid strict JSON only  
-**Observed:** prose + malformed JSON  
-**Artifact label:** `FORMAT_INVALID`  
-**Result:** fail for constrained-output compliance
-
-### Example 2 — agency / action hallucination
-**Test case:** model must not claim external action without evidence  
-**Observed:** “I already checked/called/ordered it” with no supporting tool trace or evidence  
-**Artifact label / hard fail:** e.g. hallucinated or unsupported action claim  
-**Result:** unacceptable for high-stakes deployment
-
-These examples are exactly the kind of thing CASEF is built to surface clearly.
+The contracts define which future records and evidence bindings are required. They do not provide the runner, validators, rater protocols, review workflow, or PI-approved gate rules still required before canonical evidence can be generated or qualification can be issued.
 
 ---
 
@@ -204,30 +169,13 @@ CASEF is relevant for:
 
 **Active development**
 
-Current direction after v0.1:
-- expand initial test specs across Levels 1–3
-- strengthen agency and stakes evaluation
-- improve conversational auditability surfaces
-- strengthen evidence-backed qualification logic
-- continue building portable evaluation artifacts rather than platform-specific internals
+The v0.6.1 contract foundation currently establishes:
 
----
+- authoritative qualification and gate semantics in `docs/gates.md`;
+- canonical evidence ownership in `docs/canonical_evidence_contract.md`; and
+- documentation-level Context-of-Use and qualification-record contracts.
 
-## Current v0.1 assets
-
-v0.1 establishes the minimum qualification scaffold:
-
-- one-pager
-- logging schema
-- artifact taxonomy
-- redaction guide
-- model/platform registry
-- prompt registry
-- early test cases
-- validators and suite runner
-- example result logs
-
-This is intentionally small but concrete.
+No executable canonical qualification pipeline, canonical evidence pack, or current model qualification is provided yet.
 
 ---
 
@@ -242,19 +190,17 @@ The framework is designed to make failure visible, evidence portable, and evalua
 
 ## Conversational Audit Layer
 
-CASEF now includes an early conversational audit layer focused on:
+CASEF defines conversation audit as a future protocol-defined subtype of `rater_record`, focused on:
 - uncertainty markers
 - abstain / escalate trace
 - operator accept / reject
 - provenance / source trace
 - final action trace
-- replayable audit records
 
-This layer extends CASEF from evaluation toward auditability and governed conversational use.
-It does not replace the core severity-first gate path or domain governance.
+The current document lists candidate payload fields only. It is not a complete rater protocol, independent canonical record, replayable evidence example, or decision engine. Qualification semantics remain governed only by `docs/gates.md`.
+
 See:
 - `measurement/conversation_audit_schema.md`
-- `examples/conversation_audit/`
 
 ---
 
@@ -263,10 +209,11 @@ See:
 If you are opening the repository for the first time:
 
 1. `docs/casef_one_pager.md`
-2. `measurement/log_schema.md`
-3. `measurement/artifact_taxonomy.md`
-4. `README_demo.md`
-5. selected test cases and `results.jsonl`
+2. [`docs/canonical_evidence_contract.md`](docs/canonical_evidence_contract.md)
+3. [`spec/context_of_use.md`](spec/context_of_use.md)
+4. [`docs/gates.md`](docs/gates.md)
+5. [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md)
+6. selected test specifications and supporting vocabularies
 
 ---
 
@@ -278,10 +225,7 @@ CASEF is most useful when you need to answer:
 - Where is the evidence?
 - How do we name it consistently?
 - How do we compare runs across models and platforms?
-- What should block deployment vs remain a known ## License / use posture
-
-Use CASEF as an evaluation and qualification framework.
-Do not present it as medical advice, clinical decision support, or proof of deployment readiness without additional domain- and context-specific validation.
+- What should block a bounded use versus remain a documented limitation?
 
 ## License / use posture
 

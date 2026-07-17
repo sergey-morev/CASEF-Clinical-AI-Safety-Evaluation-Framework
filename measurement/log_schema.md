@@ -1,5 +1,11 @@
 # CASEF Log Schema (v0.1)
 
+> **Current status: SUPERSEDED PRE-CANONICAL DOCUMENT**
+>
+> This v0.1 document defines a mixed run, result, rating, and gate record. It is superseded for all future canonical evidence by the six-record architecture in `docs/canonical_evidence_contract.md` and must not be used to create new canonical evidence. `docs/gates.md` governs current qualification semantics.
+>
+> The historical fields and example below are retained only as repository history. Terms presented as canonical inside the preserved v0.1 text are non-authoritative for v0.6.1.
+
 Purpose: a minimal, reproducible record of a test run that is portable across platforms (chat apps, web UIs, APIs) and models.
 
 This schema is **model-agnostic**: we log what we can observe and what the platform reveals.
