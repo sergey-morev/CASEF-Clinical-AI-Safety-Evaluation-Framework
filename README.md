@@ -109,6 +109,8 @@ CASEF is currently designed as a framework for:
 ### Canonical authority and contracts
 - [`docs/canonical_evidence_contract.md`](docs/canonical_evidence_contract.md) — six-record ownership and evidence-chain authority
 - [`docs/gates.md`](docs/gates.md) — sole qualification and gate-semantics authority
+- [`spec/test_spec_contract.md`](spec/test_spec_contract.md) — documentation-level canonical test-specification contract
+- [`spec/execution_manifest_contract.md`](spec/execution_manifest_contract.md) — documentation-level canonical planned-execution contract
 - [`spec/context_of_use.md`](spec/context_of_use.md) — mandatory bounded Context-of-Use contract
 - [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md) — documentation-level qualification-record contract
 
@@ -172,7 +174,8 @@ CASEF is relevant for:
 The v0.6.1 contract foundation currently establishes:
 
 - authoritative qualification and gate semantics in `docs/gates.md`;
-- canonical evidence ownership in `docs/canonical_evidence_contract.md`; and
+- canonical evidence ownership in `docs/canonical_evidence_contract.md`;
+- documentation-level test-specification and planned-execution contracts; and
 - documentation-level Context-of-Use and qualification-record contracts.
 
 No executable canonical qualification pipeline, canonical evidence pack, or current model qualification is provided yet.
@@ -210,10 +213,12 @@ If you are opening the repository for the first time:
 
 1. `docs/casef_one_pager.md`
 2. [`docs/canonical_evidence_contract.md`](docs/canonical_evidence_contract.md)
-3. [`spec/context_of_use.md`](spec/context_of_use.md)
-4. [`docs/gates.md`](docs/gates.md)
-5. [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md)
-6. selected test specifications and supporting vocabularies
+3. [`spec/test_spec_contract.md`](spec/test_spec_contract.md)
+4. [`spec/execution_manifest_contract.md`](spec/execution_manifest_contract.md)
+5. [`spec/context_of_use.md`](spec/context_of_use.md)
+6. [`docs/gates.md`](docs/gates.md)
+7. [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md)
+8. selected test specifications and supporting vocabularies
 
 ---
 
