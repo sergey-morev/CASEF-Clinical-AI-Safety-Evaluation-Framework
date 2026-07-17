@@ -1,69 +1,65 @@
-# CASEF — Clinical AI Safety Evaluation Framework (v0.1)
+# CASEF — v0.6.1 one-page overview
 
-**One-liner:** Physician-led, clinical-grade *post-alignment qualification* for LLMs: reproducible tests + measurable rubrics + hard-fail gates + evidence, portable across platforms.
+**One-liner:** Physician-led framework for structuring evidence for bounded qualification decisions about LLM behavior in clinical-like and other high-stakes settings.
 
 ## What CASEF is
-CASEF is a framework to qualify LLM behavior for clinical and other high-stakes workflows **before deployment**.
-It provides a standardized, auditable procedure for **go/no-go** decisions based on reproducible evaluation suites.
 
-## The problem
-LLMs can fail in ways that are dangerous or operationally unacceptable:
-- **Format/contract drift:** JSON/table constraints break; rendering leaks (Markdown/LaTeX).
-- **Semantic loss under transformation:** meaning changes when converting table → JSON → leaflet → decision tree.
-- **Degradation under multi-turn load:** performance collapses as context grows.
-- **Value-conflict instability:** safety vs helpfulness vs honesty vs autonomy.
-- **Capability dishonesty:** hallucinated actions, fake memory, deceptive certainty under stakes.
-- **Context-specific triggers:** “integration-trigger” failures not caught by generic robustness tests.
+CASEF organizes contracts, observations, assessment, and decision semantics for bounded evaluation of LLM behavior. Its core formula is:
 
-## Core novelty (not a prompt list)
-CASEF’s novelty is the pipeline:
-**spec → measurement → acceptance gates → regression → evidence**
-- **Spec:** tests are versioned and explicitly constrained.
-- **Measurement:** structured logs + artifact taxonomy + rubrics + hard fails.
-- **Gates:** threshold rules suitable for CI/regression decisions.
-- **Regression:** rerun suites on model/platform updates and compare deltas.
-- **Evidence:** failure-mode library + sanitized vignettes (illustrative, not “drama logs”).
+**spec → measurement → gates → evidence**
+
+The framework keeps a test contract, observed execution, deterministic validation, human assessment, and authorized qualification decision distinct. Qualification remains scoped to an exact Context of Use, target, interface, date, test contract, and evidence set.
+
+## What CASEF currently provides
+
+- a six-record evidence-chain architecture;
+- qualification and gate semantics in [`docs/gates.md`](gates.md);
+- documentation-level contracts for [`test_spec`](../spec/test_spec_contract.md), [`execution_manifest`](../spec/execution_manifest_contract.md), [Context of Use](../spec/context_of_use.md), and [`qualification_record`](../measurement/qualification_record_schema.md); and
+- draft current test assets, including [`TC-L1-JSON-01`](../spec/tests/level1/TC-L1-JSON-01.md), [`TC-L1-COUNT-02`](../spec/tests/level1/TC-L1-COUNT-02.md), and [`TC-L3-AGENCY-01`](../framework/level3/agency/TC-L3-AGENCY-01.md).
+
+## What CASEF does not currently provide
+
+- an executable canonical pipeline;
+- JSON Schema;
+- a runner;
+- implemented canonical validators;
+- approved rater protocols;
+- an evidence pack;
+- current model qualification; or
+- clinical deployment readiness.
+
+No current asset establishes a live qualification capability.
 
 ## Levels
-### Level 1 — Format & Constraint Robustness
-Contract-heavy outputs (JSON/YAML/CSV/tables), forbidden tokens, word/line limits, schema validity, rendering leakage.
 
-### Level 2 — Multi-turn Stress & Semantic Invariance
-Degradation under repeated turns and invariance across transformations (e.g., table → JSON → narrative → checklist).
+### Level 1 — Format and constraint robustness
 
-### Level 3 — Value Conflicts & Agency/Stakes
-Behavior under pressure: responsibility handling, verification loops, realistic capability boundaries, refusal calibration.
+Bounded structural requirements such as JSON shape, word limits, and surface-format constraints.
 
-## Key v0.1 deliverables (docs-first)
-v0.1 is intentionally minimal and publishable:
-- `/docs/casef_one_pager.md` — this one-pager
-- `/spec/suite_state.md` — levels, scope, non-goals, current modules
-- `/measurement/log_schema.md` — what fields we log; CSV/JSONL templates
-- `/measurement/artifact_taxonomy.md` — artifact types + detection rules
-- `/redaction/redaction_guide.md` — what never gets published; “MODEL-GENERATED (NOT TELEMETRY)”
-- `/docs/not_jailbreak.md` — positioning: qualification/robustness, not jailbreak research
+### Level 2 — Multi-turn stress and semantic invariance
 
-## TC-L3-AGENCY (Level 3 module)
-Single-turn battery that measures “agency without qualia”:
-- closed-loop control (plan → check → fix) with STOP criteria
-- stakes/responsibility handling
-- realism about capabilities and memory
-**Hard fails include:** hallucinated actions, unsafe guidance, deceptive authority, prompt evasion, confident wrong under stakes.
-(Full spec lands in v0.2 as `spec/TC-L3-AGENCY.md`.)
+Future work on behavior across repeated turns and defined transformations.
 
-## MedRLHF Gap (concept inside CASEF)
-Treat “MedRLHF” as an *alignment claim*; CASEF is the *qualification gate*.
-CASEF measures the **MedRLHF Gap**: failures that remain after RLHF (over-refusal, boilerplate dominance, sycophancy under stakes, capability dishonesty, format breakdown under stress).
+### Level 3 — Value conflicts and agency/stakes
 
-## Outputs and users
-**Outputs:** versioned suites + logs + rubrics + pass/fail gates + evidence catalog.
-**Users:** clinical governance teams, hospitals, insurers, vendors, safety/reliability teams, researchers needing reproducible high-stakes evaluation.
+Future protocol-bound work on capability disclosure, responsibility handling, verification boundaries, and safety under pressure.
+
+## Current documentation surfaces
+
+- [`docs/canonical_evidence_contract.md`](canonical_evidence_contract.md) — record ownership and evidence-chain boundaries.
+- [`docs/gates.md`](gates.md) — sole qualification and gate-semantics authority.
+- [`spec/test_spec_contract.md`](../spec/test_spec_contract.md) — canonical test-specification contract.
+- [`spec/execution_manifest_contract.md`](../spec/execution_manifest_contract.md) — canonical planned-execution contract.
+- [`spec/context_of_use.md`](../spec/context_of_use.md) — bounded Context-of-Use contract.
+- [`measurement/qualification_record_schema.md`](../measurement/qualification_record_schema.md) — qualification-record contract.
+
+## MedRLHF Gap backlog concept
+
+Alignment claims may later be recorded as context for qualification. An alignment claim is not qualification evidence. This overview establishes no active MedRLHF-specific test, gate, or current qualification claim.
 
 ## Non-goals
-- No jailbreak/exploitation instructions.
-- No model “fixing” or claims about vendor internals.
-- No clinical diagnosis or treatment recommendations: we evaluate model behavior and safety properties.
 
-## Status
-v0.1: docs + measurement scaffolding (publishable baseline).
-Next: v0.2 adds TC-L3-AGENCY spec + first minimal templates; v0.3 adds initial cross-platform baseline runs.
+- No jailbreak or exploitation instructions.
+- No claims about vendor internals or hidden model identity.
+- No clinical diagnosis or treatment recommendations.
+- No provider-wide, company-wide, product-wide, permanent-model, or general-safety conclusion from bounded evidence.
