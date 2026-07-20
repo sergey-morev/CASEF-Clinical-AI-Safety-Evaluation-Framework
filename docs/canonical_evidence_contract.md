@@ -33,12 +33,12 @@ Conversation audit is a protocol-defined subtype or payload of `rater_record`, n
 | [`execution_manifest`](../spec/execution_manifest_contract.md) | Planned target and execution protocol; planned execution context; selected exact test versions; planned repetitions; controlled execution conditions; execution authorization state | Test semantics, actual observations, captured outputs, validation results, human findings, or qualification |
 | [`run_record`](../measurement/run_record_schema.md) | One execution attempt; actual timestamps and execution outcome; observed target and context; captured source-artifact references and hashes | Manifest-conformance verdicts, deterministic or human findings, severity, or qualification |
 | [`validation_record`](../measurement/validation_record_schema.md) | One deterministic validation execution; exact immutable input binding; validator identity; mechanically established checks and findings | Human judgment, individual or final severity, policy consequence, or qualification |
-| `rater_record` | One human-assessment execution; exact protocol identity; exact evidence presentation; rater identity; protocol-bound human findings; optional protocol-bound individual severity | Deterministic findings rewritten as human findings, multi-rater adjudication, final severity, policy consequence, or qualification |
+| [`rater_record`](../measurement/rater_record_schema.md) | One human-assessment execution; exact protocol identity; exact evidence presentation; rater identity; protocol-bound human findings; optional protocol-bound individual severity | Deterministic findings rewritten as human findings, multi-rater adjudication, final severity, policy consequence, or qualification |
 | `qualification_record` | Evidence inclusion and exclusion; adjudicated findings; final severity where applicable; qualification outcome; Context-of-Use policy consequence; decision authority and provenance | Raw evidence content, rewritten upstream records, hidden model identity, or claims broader than the exact decision context |
 
 No record may silently absorb the responsibilities of another. Referencing an owned fact does not transfer ownership.
 
-`spec/test_spec_contract.md`, `spec/execution_manifest_contract.md`, `measurement/run_record_schema.md`, and `measurement/validation_record_schema.md` define the documentation-level field and invariant contracts for their respective canonical record types. They do not alter the ownership boundaries in this table.
+`spec/test_spec_contract.md`, `spec/execution_manifest_contract.md`, `measurement/run_record_schema.md`, `measurement/validation_record_schema.md`, and `measurement/rater_record_schema.md` define the documentation-level field and invariant contracts for their respective canonical record types. `spec/rater_protocol_contract.md` defines the separate versioned protocol boundary for human assessment. They do not alter the ownership boundaries in this table.
 
 ## 4. Immutable evidence and derived judgment
 
@@ -118,7 +118,7 @@ This document governs what records exist, which facts each record owns, and how 
 
 `docs/gates.md` governs evidence eligibility, finding admission, adjudicated severity, qualification outcomes, and Context-of-Use policy consequences. A `qualification_record` must bind the exact gate-policy identity, version, and repository commit that authorized its decision.
 
-`spec/test_spec_contract.md`, `spec/execution_manifest_contract.md`, `measurement/run_record_schema.md`, and `measurement/validation_record_schema.md` define the documentation-level field and invariant contracts for the first four canonical record types. `spec/context_of_use.md` defines the minimum Context-of-Use specification, and `measurement/qualification_record_schema.md` defines the documentation-level field contract for the final canonical record. All remain subordinate to the ownership and gate-authority boundaries above.
+`spec/test_spec_contract.md`, `spec/execution_manifest_contract.md`, `measurement/run_record_schema.md`, `measurement/validation_record_schema.md`, `measurement/rater_record_schema.md`, and `measurement/qualification_record_schema.md` define the documentation-level field and invariant contracts for all six canonical record types. `spec/context_of_use.md` defines the minimum Context-of-Use specification, and `spec/rater_protocol_contract.md` defines the versioned protocol boundary for human assessment. All remain subordinate to the ownership and gate-authority boundaries above.
 
 When these records are consumed for a decision, the authoritative path remains exactly:
 
@@ -128,6 +128,6 @@ This document creates no active blocking rule.
 
 ## 11. Current v0.6.1 implementation status
 
-CASEF v0.6.1 has documentation-level record ownership and qualification semantics. Five of the six canonical record contracts are now documented: `test_spec`, `execution_manifest`, `run_record`, `validation_record`, and `qualification_record`. The `rater_record` contract remains pending. Context of Use is documented separately. These contracts do not provide JSON Schema, storage, dispatch, validators, rater protocols, a runner, automated qualification, or evidence generation.
+CASEF v0.6.1 has documentation-level record ownership and qualification semantics. All six canonical record contracts are now documented. Context of Use and the rater-protocol contract are documented separately. No approved rater-protocol instance exists. These contracts do not provide JSON Schema, storage, dispatch, validators, executable rater protocols, a runner, automated qualification, or evidence generation.
 
-No canonical qualification pipeline is executable until the remaining record contracts, protocols, tooling, validation, and PI-approved gate rules are implemented and reviewed.
+No canonical qualification pipeline is executable until required protocol instances, tooling, validation, and PI-approved gate rules are implemented and reviewed.

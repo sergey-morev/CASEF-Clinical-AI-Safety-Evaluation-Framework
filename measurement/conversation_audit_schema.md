@@ -2,18 +2,21 @@
 
 ## Canonical status and boundary
 
-Conversation audit is a protocol-defined subtype or payload inside one canonical `rater_record`. It is not an independent canonical record and does not add a seventh record to the evidence chain.
+Conversation audit is a protocol-defined subtype or payload inside one canonical [`rater_record`](rater_record_schema.md). It is not an independent canonical record and does not add a seventh record to the evidence chain.
 
-This document lists candidate audit dimensions only. It does not define a complete rater protocol or independently executable schema.
+This document lists candidate audit dimensions only. It is not a rater protocol and is not independently executable. The versioned protocol boundary is defined by [`spec/rater_protocol_contract.md`](../spec/rater_protocol_contract.md).
 
 Canonical use requires the parent `rater_record` to bind:
 
-- exact `rater_protocol_id`, `rater_protocol_version`, and repository commit;
-- exact rater identity;
-- exact `run_id` and run-record version;
-- exact evidence presented, including presentation order and any redaction or transformation state;
-- exact prompt and output artifact references and hashes; and
-- an immutable rater-record identity and assessment execution result.
+- exact `rater_protocol_reference`;
+- exact `rater_identity`;
+- exact immutable `run_record_references`;
+- exact `source_artifact_references`;
+- exact `evidence_presentation_reference`;
+- exact `evidence_presentation_provenance`; and
+- exact `assessment_execution_status`.
+
+The candidate fields below become usable only when adopted by an exact frozen eligible protocol. This file does not create findings, severity, adjudication, qualification, or policy consequence by itself.
 
 The conversation-audit demo artifacts removed from the active repository are non-canonical and are not valid examples for this contract. No canonical conversation-audit example is provided in v0.6.1.
 
