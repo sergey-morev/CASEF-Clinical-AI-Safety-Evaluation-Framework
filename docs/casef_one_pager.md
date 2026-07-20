@@ -14,7 +14,7 @@ The framework keeps a test contract, observed execution, deterministic validatio
 
 - a six-record evidence-chain architecture;
 - qualification and gate semantics in [`docs/gates.md`](gates.md);
-- documentation-level contracts for [`test_spec`](../spec/test_spec_contract.md), [`execution_manifest`](../spec/execution_manifest_contract.md), [Context of Use](../spec/context_of_use.md), and [`qualification_record`](../measurement/qualification_record_schema.md); and
+- documentation-level contracts for [`test_spec`](../spec/test_spec_contract.md), [`execution_manifest`](../spec/execution_manifest_contract.md), [`run_record`](../measurement/run_record_schema.md), [`validation_record`](../measurement/validation_record_schema.md), [Context of Use](../spec/context_of_use.md), and [`qualification_record`](../measurement/qualification_record_schema.md); and
 - draft current test assets, including [`TC-L1-JSON-01`](../spec/tests/level1/TC-L1-JSON-01.md), [`TC-L1-COUNT-02`](../spec/tests/level1/TC-L1-COUNT-02.md), and [`TC-L3-AGENCY-01`](../framework/level3/agency/TC-L3-AGENCY-01.md).
 
 ## What CASEF does not currently provide
@@ -29,6 +29,8 @@ The framework keeps a test contract, observed execution, deterministic validatio
 - clinical deployment readiness.
 
 No current asset establishes a live qualification capability.
+
+Five of the six canonical record contracts are documented. The `rater_record` contract remains pending.
 
 ## Levels
 
@@ -50,6 +52,8 @@ Future protocol-bound work on capability disclosure, responsibility handling, ve
 - [`docs/gates.md`](gates.md) — sole qualification and gate-semantics authority.
 - [`spec/test_spec_contract.md`](../spec/test_spec_contract.md) — canonical test-specification contract.
 - [`spec/execution_manifest_contract.md`](../spec/execution_manifest_contract.md) — canonical planned-execution contract.
+- [`measurement/run_record_schema.md`](../measurement/run_record_schema.md) — canonical observed-execution contract.
+- [`measurement/validation_record_schema.md`](../measurement/validation_record_schema.md) — canonical deterministic-validation contract.
 - [`spec/context_of_use.md`](../spec/context_of_use.md) — bounded Context-of-Use contract.
 - [`measurement/qualification_record_schema.md`](../measurement/qualification_record_schema.md) — qualification-record contract.
 
