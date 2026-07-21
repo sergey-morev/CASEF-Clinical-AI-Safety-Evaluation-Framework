@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sergey-morev/CASEF-Clinical-AI-Safety-Evaluation-Framework/v0.6.1/schemas/v0.6.1/common/scalars.schema.json",
+  "title": "CASEF v0.6.1 common scalar definitions",
+  "$comment": "Development artifact: not represented as released until the immutable v0.6.1 Git tag exists. Future schemas consume definitions through exact $ref fragments.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false,
+  "$defs": {
+    "stable_identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._:-]{0,127}(?![\\s\\S])",
+      "description": "Lexical envelope only. Identifiers are case-sensitive, this definition transfers no ownership, and an object-specific schema may narrow the pattern."
+    },
+    "authored_version": {
+      "type": "string",
+      "pattern": "^v(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?(?![\\s\\S])",
+      "description": "Shared lexical syntax only. Version namespaces remain semantically distinct; matching syntax does not merge ownership or lifecycle."
+    },
+    "record_version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Positive record-lineage representation only; this is not schema_version."
+    },
+    "canonical_timestamp_utc": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12][0-9]|3[01])T(?:[01][0-9]|2[0-3]):[0-5][0-9]:(?:[0-5][0-9]|60)(?:\\.[0-9]{0,8}[1-9])?Z(?![\\s\\S])",
+      "description": "Canonical RFC 3339 UTC lexical form with uppercase T and Z, no offset, and one to nine non-zero-terminated fractional digits when present. JSON Schema enforces lexical form only and does not establish full calendar validity. Leap-second semantics remain deferred; later semantic validation must not silently normalize leap seconds or fabricate precision."
+    },
+    "absolute_uri": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^(?![\\s\\S]*\\s(?![\\s\\S]))[A-Za-z][A-Za-z0-9+.-]*:",
+      "description": "The required scheme pattern prevents relative references and includes a canonical trailing-whitespace guard at true end of input. Consumers must enable Draft 2020-12 URI format checking or perform equivalent URI validation. A valid locator does not establish content correctness or authority."
+    },
+    "json_pointer": {
+      "type": "string",
+      "pattern": "^(?![\\s\\S]*\\s(?![\\s\\S]))(?:/(?:[^~/]|~0|~1)*)*(?![\\s\\S])",
+      "description": "RFC 6901 JSON Pointer lexical syntax with the additional CASEF canonical no-trailing-whitespace and true end-of-input requirements."
+    }
+  }
+}

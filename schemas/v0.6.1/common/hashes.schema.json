@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sergey-morev/CASEF-Clinical-AI-Safety-Evaluation-Framework/v0.6.1/schemas/v0.6.1/common/hashes.schema.json",
+  "title": "CASEF v0.6.1 common hash definitions",
+  "$comment": "Development artifact: not represented as released until the immutable v0.6.1 Git tag exists. Future schemas consume definitions through exact $ref fragments.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false,
+  "$defs": {
+    "sha256_hex_digest": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}(?![\\s\\S])",
+      "description": "Lowercase SHA-256 hexadecimal digest component only; this is not the complete canonical CASEF content-hash representation."
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}(?![\\s\\S])",
+      "description": "Canonical CASEF v0.6.1 content hash. The algorithm prefix and lowercase hexadecimal digest are mandatory, and a bare digest is non-canonical. Pattern validity establishes no authenticity, correctness, scientific-validity, eligibility, or authority claim."
+    },
+    "hash_domain": {
+      "type": "string",
+      "enum": [
+        "CASEF-VALIDATION-INPUT-v1",
+        "CASEF-ASSESSMENT-INPUT-v1",
+        "CASEF-DECISION-INPUT-v1"
+      ],
+      "description": "Exact globally canonical CASEF v0.6.1 input-hash domain tags. This definition does not define the corresponding domain-object schemas, and raw digest concatenation remains prohibited."
+    }
+  }
+}

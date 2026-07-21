@@ -42,7 +42,7 @@ The versioned schema-directory convention is:
 - `schemas/v0.6.1/context_of_use/`
 - `schemas/v0.6.1/qualification_record/`
 
-These directories do not yet exist and are not created by this documentation contract.
+The `schemas/v0.6.1/common/` directory now contains the first development-stage executable common scalar and hash schemas. Record-specific schema directories remain unimplemented. The common schemas use their future immutable release-tag `$id` values but are not represented as released until the immutable `v0.6.1` Git tag exists.
 
 Future released `$id` values use immutable release-tag paths in this form:
 
@@ -328,6 +328,8 @@ They may serve only according to their current canonical status as historical ma
 
 ## 21. Current implementation boundary
 
-All six canonical record contracts and the canonical serialization decisions are documented. No JSON Schema file, schema catalog, canonical serializer, RFC 8785 implementation, hash verifier, executable record validator, or serialized canonical record instance exists.
+All six canonical record contracts and the canonical serialization decisions are documented. Development-stage common scalar and hash JSON Schemas and machine-readable valid and invalid test vectors now exist.
+
+No record, reference, or actor schema exists. No schema catalog, canonical serializer, RFC 8785 implementation, SHA-256 computation or verification implementation, executable cross-record validator, CI workflow, or serialized canonical record instance exists.
 
 No approved rater-protocol or gate-policy instance exists, and no canonical qualification pipeline is executable.

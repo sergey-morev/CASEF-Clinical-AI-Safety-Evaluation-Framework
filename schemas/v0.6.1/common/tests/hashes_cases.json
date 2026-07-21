@@ -1,0 +1,57 @@
+{
+  "schema_id": "https://raw.githubusercontent.com/sergey-morev/CASEF-Clinical-AI-Safety-Evaluation-Framework/v0.6.1/schemas/v0.6.1/common/hashes.schema.json",
+  "cases": [
+    {
+      "name": "sha256_hex_digest",
+      "ref": "#/$defs/sha256_hex_digest",
+      "valid": [
+        "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+      ],
+      "invalid": [
+        "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcde",
+        "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0",
+        "0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF",
+        "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+        "g123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+        "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\n",
+        1,
+        null
+      ]
+    },
+    {
+      "name": "content_hash",
+      "ref": "#/$defs/content_hash",
+      "valid": [
+        "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+      ],
+      "invalid": [
+        "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+        "sha256:0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF",
+        "SHA256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+        "sha512:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+        "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcde",
+        " sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef ",
+        "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef\n",
+        1,
+        null
+      ]
+    },
+    {
+      "name": "hash_domain",
+      "ref": "#/$defs/hash_domain",
+      "valid": [
+        "CASEF-VALIDATION-INPUT-v1",
+        "CASEF-ASSESSMENT-INPUT-v1",
+        "CASEF-DECISION-INPUT-v1"
+      ],
+      "invalid": [
+        "casef-validation-input-v1",
+        "CASEF-VALIDATION-INPUT-v2",
+        "CASEF-RECORD-v1",
+        "",
+        1,
+        null
+      ]
+    }
+  ]
+}
