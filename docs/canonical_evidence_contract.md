@@ -6,6 +6,8 @@ This document is the authoritative source for canonical record ownership and evi
 
 `docs/gates.md` remains the sole authority for qualification and gate semantics. This document does not redefine qualification outcomes, policy consequences, severity rules, or gate precedence. Neither document replaces the other within the other's authority.
 
+[`docs/canonical_serialization_contract.md`](canonical_serialization_contract.md) is the sole authority for canonical wire format, lexical version rules, reference serialization, timestamp normalization, content hashes, and canonicalization. It is subordinate to this document's record-ownership authority and to the qualification authority of `docs/gates.md`; it does not alter record ownership or gate semantics.
+
 The contract defines architecture only. It does not make the CASEF pipeline executable.
 
 ## 2. Six-record evidence chain
@@ -66,6 +68,8 @@ Record-specific contracts may require additional identity fields, such as exact 
 
 Mechanically copied identifiers are permitted only as checkable reference data. The referenced owner remains authoritative.
 
+The executable representation of these references is governed by [`docs/canonical_serialization_contract.md`](canonical_serialization_contract.md). Record-specific meaning and requirement levels remain governed by the owning record contract.
+
 ## 6. Prohibited duplication and ownership conflicts
 
 Canonical records must not:
@@ -87,13 +91,17 @@ Optional missing values use actual null or field absence only where the record-s
 
 Each canonical record instance has a stable record identity and binds the exact schema or contract version used to produce it. A version identifier for one concept must not be reused for another: schema version, test version, manifest version, record version, Context-of-Use version, validator version, rater-protocol version, and gate-policy version remain distinct.
 
+Lexical version rules and the machine representation of record identity are governed by [`docs/canonical_serialization_contract.md`](canonical_serialization_contract.md). This document continues to govern identity ownership and immutability.
+
 Once terminal, a record is immutable. A correction, invalidation, revalidation, reassessment, or reevaluation creates a new immutable record identity and an explicit supersession or replacement relation. Previous records remain discoverable.
 
 A materially changed test contract, Context of Use, planned target, or execution protocol cannot be retroactively applied to evidence captured under an earlier version.
 
 ## 8. Artifact and hash provenance
 
-Artifact and record hashes bind exact immutable content. The applicable record contract must identify the hash algorithm and canonicalization rule. Integrity processing must not modify the captured source artifact.
+Artifact and record hashes bind exact immutable content. The canonical hash algorithm, hash representation, JSON canonicalization rule, and exact-byte source-artifact hashing rule are governed by [`docs/canonical_serialization_contract.md`](canonical_serialization_contract.md).
+
+Record-specific contracts define which owned content and hash-bearing fields their objects require; they do not independently select competing hash algorithms or canonicalization rules. Integrity processing must not modify the captured source artifact.
 
 A hash establishes integrity of referenced bytes; it does not prove provider identity, model authenticity, or correctness of the content.
 
@@ -128,6 +136,6 @@ This document creates no active blocking rule.
 
 ## 11. Current v0.6.1 implementation status
 
-CASEF v0.6.1 has documentation-level record ownership and qualification semantics. All six canonical record contracts are now documented. Context of Use and the rater-protocol contract are documented separately. No approved rater-protocol instance exists. These contracts do not provide JSON Schema, storage, dispatch, validators, executable rater protocols, a runner, automated qualification, or evidence generation.
+CASEF v0.6.1 has documentation-level record ownership, qualification semantics, and canonical serialization rules. All six canonical record contracts and the canonical serialization contract are now documented. Context of Use and the rater-protocol contract are documented separately. No approved rater-protocol instance exists. Executable JSON Schemas, serializers, hash implementations, storage, dispatch, validators, executable rater protocols, a runner, automated qualification, and evidence generation do not yet exist.
 
 No canonical qualification pipeline is executable until required protocol instances, tooling, validation, and PI-approved gate rules are implemented and reviewed.

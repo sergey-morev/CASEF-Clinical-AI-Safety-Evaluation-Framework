@@ -108,6 +108,7 @@ CASEF is currently designed as a framework for:
 
 ### Canonical authority and contracts
 - [`docs/canonical_evidence_contract.md`](docs/canonical_evidence_contract.md) — six-record ownership and evidence-chain authority
+- [`docs/canonical_serialization_contract.md`](docs/canonical_serialization_contract.md) — documentation-level canonical wire-format, version-namespace, reference, timestamp, canonicalization, and hashing authority
 - [`docs/gates.md`](docs/gates.md) — sole qualification and gate-semantics authority
 - [`spec/test_spec_contract.md`](spec/test_spec_contract.md) — documentation-level canonical test-specification contract
 - [`spec/execution_manifest_contract.md`](spec/execution_manifest_contract.md) — documentation-level canonical planned-execution contract
@@ -136,7 +137,7 @@ CASEF is currently designed as a framework for:
 
 ## Current v0.6.1 implementation boundary
 
-CASEF v0.6.1 currently provides authoritative gate semantics and canonical contract documentation. It does not yet provide an executable canonical qualification pipeline, canonical evidence-generation workflow, or live qualification capability.
+CASEF v0.6.1 currently provides authoritative gate semantics, canonical contract documentation, and documented canonical serialization rules. It does not yet provide executable JSON Schemas, a canonical serializer, a hash verifier, a schema-validation workflow, an executable canonical qualification pipeline, a canonical evidence-generation workflow, or live qualification capability.
 
 The contracts define which future records and evidence bindings are required. They do not provide the runner, validators, approved rater-protocol instances, executable human-assessment workflow, review workflow, or PI-approved gate rules still required before canonical evidence can be generated or qualification can be issued.
 
@@ -220,16 +221,17 @@ If you are opening the repository for the first time:
 
 1. `docs/casef_one_pager.md`
 2. [`docs/canonical_evidence_contract.md`](docs/canonical_evidence_contract.md)
-3. [`spec/test_spec_contract.md`](spec/test_spec_contract.md)
-4. [`spec/execution_manifest_contract.md`](spec/execution_manifest_contract.md)
-5. [`measurement/run_record_schema.md`](measurement/run_record_schema.md)
-6. [`measurement/validation_record_schema.md`](measurement/validation_record_schema.md)
-7. [`spec/rater_protocol_contract.md`](spec/rater_protocol_contract.md)
-8. [`measurement/rater_record_schema.md`](measurement/rater_record_schema.md)
-9. [`spec/context_of_use.md`](spec/context_of_use.md)
-10. [`docs/gates.md`](docs/gates.md)
-11. [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md)
-12. selected test specifications and supporting vocabularies
+3. [`docs/canonical_serialization_contract.md`](docs/canonical_serialization_contract.md)
+4. [`spec/test_spec_contract.md`](spec/test_spec_contract.md)
+5. [`spec/execution_manifest_contract.md`](spec/execution_manifest_contract.md)
+6. [`measurement/run_record_schema.md`](measurement/run_record_schema.md)
+7. [`measurement/validation_record_schema.md`](measurement/validation_record_schema.md)
+8. [`spec/rater_protocol_contract.md`](spec/rater_protocol_contract.md)
+9. [`measurement/rater_record_schema.md`](measurement/rater_record_schema.md)
+10. [`spec/context_of_use.md`](spec/context_of_use.md)
+11. [`docs/gates.md`](docs/gates.md)
+12. [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md)
+13. selected test specifications and supporting vocabularies
 
 ---
 

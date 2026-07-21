@@ -78,7 +78,7 @@ The future executable schema defines serialization, timestamp syntax, and requir
 
 `rater_protocol_id` is the stable identity of one assessment construct and method. Filenames and headings are not authoritative identity.
 
-`rater_protocol_version` identifies the exact protocol version and is distinct from schema, test, construct, record, gate-policy, and Context-of-Use versions. Once approved, that version is immutable.
+`rater_protocol_version` identifies the exact protocol version and is distinct from schema, test, construct, record, validator, gate-policy, and Context-of-Use versions. Once approved, that version is immutable.
 
 A material change to any of the following creates a new protocol version:
 
