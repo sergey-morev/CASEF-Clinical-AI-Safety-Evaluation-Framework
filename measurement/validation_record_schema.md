@@ -63,7 +63,7 @@ A `validation_record` must not own:
 | `supersedes_validation_record_reference` | Optional | Exact immutable reference to the prior validation-record version corrected by this version; null or absent when none exists |
 | `supersession_reason` | Conditionally required | Bounded reason for supersession; required when `supersedes_validation_record_reference` is present and otherwise null or absent |
 
-The future executable schema defines serialization, timestamp syntax, hash algorithm, canonicalization, and required subfields. Empty strings and sentinel strings such as `"NONE"`, `"N/A"`, or `"UNKNOWN"` must not substitute for null or field absence.
+Canonical serialization, timestamp syntax, hash algorithm, hash representation, and canonicalization are governed by [`docs/canonical_serialization_contract.md`](../docs/canonical_serialization_contract.md). The future executable validation-record schema defines this record's required serialized subfields under that authority. Empty strings and sentinel strings such as `"NONE"`, `"N/A"`, or `"UNKNOWN"` must not substitute for null or field absence.
 
 ## 4. One validator invocation and exact input binding
 
