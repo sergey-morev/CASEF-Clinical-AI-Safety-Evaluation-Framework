@@ -126,7 +126,7 @@ The consequence is derived under the exact Context-of-Use policy. A research act
 
 `decision_authority` must identify the PI who authorized the decision and the authority basis. The record also binds the exact gate policy by ID, version, and repository commit.
 
-`decision_input_hash` binds the ordered set of exact inputs used for the decision. The future executable contract must define its hash algorithm and canonicalization. The digest proves input-set integrity, not scientific correctness or authority by itself.
+`decision_input_hash` binds the ordered set of exact inputs used for the decision. Its hash algorithm, hash representation, domain separation, and canonicalization are governed by [`docs/canonical_serialization_contract.md`](../docs/canonical_serialization_contract.md). The future executable qualification-record schema defines the exact decision-input object and required bindings under that authority. The digest proves input-set integrity, not scientific correctness or authority by itself.
 
 ## 9. Immutability and supersession
 

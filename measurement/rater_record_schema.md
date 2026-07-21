@@ -66,7 +66,7 @@ A `rater_record` must not own test semantics, planned execution facts, run obser
 | `supersedes_rater_record_reference` | Optional | Exact prior record version superseded by a metadata correction |
 | `supersession_reason` | Conditionally required | Bounded reason when supersession is present; otherwise null or absent |
 
-The future executable schema defines serialization, canonical timestamps, hashing, canonicalization, and required subfields. Empty strings and sentinel strings must not substitute for null or field absence.
+Canonical serialization, timestamp syntax, hash algorithm, hash representation, and canonicalization are governed by [`docs/canonical_serialization_contract.md`](../docs/canonical_serialization_contract.md). The future executable rater-record schema defines this record's required serialized subfields under that authority. Empty strings and sentinel strings must not substitute for null or field absence.
 
 ## 4. Exact protocol and input binding
 
@@ -88,7 +88,7 @@ The protocol must be exact, frozen, and eligible for canonical assessment use.
 
 `source_artifact_references` binds exact prompt, output, trace, or authorized derivative artifacts actually used. `assessment_input_references` preserves the exact ordered set of immutable records, artifacts, test and manifest where applicable, and protocol inputs authorized for assessment.
 
-`assessment_input_hash` binds that ordered input set plus protocol and presentation bindings. The future executable schema defines hashing and canonicalization. A digest proves integrity, not correctness, authenticity, expertise, or authority.
+`assessment_input_hash` binds that ordered input set plus protocol and presentation bindings. Its hash algorithm, hash representation, domain separation, and canonicalization are governed by [`docs/canonical_serialization_contract.md`](../docs/canonical_serialization_contract.md). The future executable rater-record schema defines the exact assessment-input object and required bindings under that authority. A digest proves integrity, not correctness, authenticity, expertise, or authority.
 
 ## 5. Canonical and diagnostic use
 
