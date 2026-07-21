@@ -113,6 +113,8 @@ CASEF is currently designed as a framework for:
 - [`spec/execution_manifest_contract.md`](spec/execution_manifest_contract.md) — documentation-level canonical planned-execution contract
 - [`measurement/run_record_schema.md`](measurement/run_record_schema.md) — documentation-level canonical observed-execution contract
 - [`measurement/validation_record_schema.md`](measurement/validation_record_schema.md) — documentation-level canonical deterministic-validation contract
+- [`spec/rater_protocol_contract.md`](spec/rater_protocol_contract.md) — documentation-level versioned human-assessment protocol boundary
+- [`measurement/rater_record_schema.md`](measurement/rater_record_schema.md) — documentation-level canonical individual human-assessment execution contract
 - [`spec/context_of_use.md`](spec/context_of_use.md) — mandatory bounded Context-of-Use contract
 - [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md) — documentation-level qualification-record contract
 
@@ -136,7 +138,7 @@ CASEF is currently designed as a framework for:
 
 CASEF v0.6.1 currently provides authoritative gate semantics and canonical contract documentation. It does not yet provide an executable canonical qualification pipeline, canonical evidence-generation workflow, or live qualification capability.
 
-The contracts define which future records and evidence bindings are required. They do not provide the runner, validators, rater protocols, review workflow, or PI-approved gate rules still required before canonical evidence can be generated or qualification can be issued.
+The contracts define which future records and evidence bindings are required. They do not provide the runner, validators, approved rater-protocol instances, executable human-assessment workflow, review workflow, or PI-approved gate rules still required before canonical evidence can be generated or qualification can be issued.
 
 ---
 
@@ -177,9 +179,11 @@ The v0.6.1 contract foundation currently establishes:
 
 - authoritative qualification and gate semantics in `docs/gates.md`;
 - canonical evidence ownership in `docs/canonical_evidence_contract.md`;
-- documentation-level contracts for test specification, planned execution, observed execution, and deterministic validation;
-- documentation-level Context-of-Use and qualification-record contracts; and
-- a pending `rater_record` contract.
+- documentation-level contracts for all six canonical record types, including protocol-bound individual human assessment;
+- a documentation-level rater-protocol contract; and
+- documentation-level Context-of-Use and qualification-record contracts.
+
+All six canonical record contracts are documented. The rater-protocol contract is documented, but no approved rater-protocol instance or executable human-assessment workflow exists.
 
 No executable canonical qualification pipeline, canonical evidence pack, or current model qualification is provided yet.
 
@@ -220,10 +224,12 @@ If you are opening the repository for the first time:
 4. [`spec/execution_manifest_contract.md`](spec/execution_manifest_contract.md)
 5. [`measurement/run_record_schema.md`](measurement/run_record_schema.md)
 6. [`measurement/validation_record_schema.md`](measurement/validation_record_schema.md)
-7. [`spec/context_of_use.md`](spec/context_of_use.md)
-8. [`docs/gates.md`](docs/gates.md)
-9. [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md)
-10. selected test specifications and supporting vocabularies
+7. [`spec/rater_protocol_contract.md`](spec/rater_protocol_contract.md)
+8. [`measurement/rater_record_schema.md`](measurement/rater_record_schema.md)
+9. [`spec/context_of_use.md`](spec/context_of_use.md)
+10. [`docs/gates.md`](docs/gates.md)
+11. [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md)
+12. selected test specifications and supporting vocabularies
 
 ---
 
