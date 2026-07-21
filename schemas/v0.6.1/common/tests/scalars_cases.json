@@ -1,0 +1,127 @@
+{
+  "schema_id": "https://raw.githubusercontent.com/sergey-morev/CASEF-Clinical-AI-Safety-Evaluation-Framework/v0.6.1/schemas/v0.6.1/common/scalars.schema.json",
+  "cases": [
+    {
+      "name": "stable_identifier",
+      "ref": "#/$defs/stable_identifier",
+      "valid": [
+        "EXECUTION_OPERATOR",
+        "TC-L1-JSON-01",
+        "A",
+        "a.b:c_1-2",
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+      ],
+      "invalid": [
+        "",
+        "1identifier",
+        " leading",
+        "trailing ",
+        "slash/identifier",
+        "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "A\n",
+        null,
+        1
+      ]
+    },
+    {
+      "name": "authored_version",
+      "ref": "#/$defs/authored_version",
+      "valid": [
+        "v0.6.1",
+        "v0.3.0-draft",
+        "v1.2.0-rc.1"
+      ],
+      "invalid": [
+        "0.6.1",
+        "v01.2.3",
+        "v1.2",
+        "v1.2.3+build",
+        "v1.2.3-",
+        " v1.2.3 ",
+        "v1.2.3\n",
+        1,
+        null
+      ]
+    },
+    {
+      "name": "record_version",
+      "ref": "#/$defs/record_version",
+      "valid": [
+        1,
+        2,
+        100
+      ],
+      "invalid": [
+        0,
+        -1,
+        1.5,
+        "1",
+        true,
+        null
+      ]
+    },
+    {
+      "name": "canonical_timestamp_utc",
+      "ref": "#/$defs/canonical_timestamp_utc",
+      "valid": [
+        "2026-07-21T11:32:39Z",
+        "2026-07-21T11:32:39.125Z",
+        "2026-07-21T11:32:39.000004Z",
+        "2026-12-31T23:59:60Z"
+      ],
+      "invalid": [
+        "2026-07-21T11:32:39z",
+        "2026-07-21 11:32:39Z",
+        "2026-07-21T11:32:39+01:00",
+        "2026-07-21T11:32:39.0Z",
+        "2026-07-21T11:32:39.120Z",
+        "2026-07-21T11:32:39.1234567890Z",
+        "2026-07-21T11:32Z",
+        " 2026-07-21T11:32:39Z ",
+        "2026-07-21T11:32:39Z\n",
+        20260721,
+        null
+      ]
+    },
+    {
+      "name": "absolute_uri",
+      "ref": "#/$defs/absolute_uri",
+      "valid": [
+        "https://example.org/a",
+        "urn:casef:test:1",
+        "mailto:test@example.org"
+      ],
+      "invalid": [
+        "relative/path",
+        "/absolute/path",
+        "example.org/a",
+        "",
+        " https://example.org/a",
+        "https://example.org/a\n",
+        1,
+        null
+      ]
+    },
+    {
+      "name": "json_pointer",
+      "ref": "#/$defs/json_pointer",
+      "valid": [
+        "",
+        "/",
+        "/a",
+        "/a~1b",
+        "/m~0n",
+        "/a/0"
+      ],
+      "invalid": [
+        "a",
+        "/a~2b",
+        "/a~",
+        "/a ",
+        "/a\n",
+        1,
+        null
+      ]
+    }
+  ]
+}

@@ -119,6 +119,9 @@ CASEF is currently designed as a framework for:
 - [`spec/context_of_use.md`](spec/context_of_use.md) — mandatory bounded Context-of-Use contract
 - [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md) — documentation-level qualification-record contract
 
+### Executable schema foundation
+- [`schemas/v0.6.1/common/`](schemas/v0.6.1/common/) — development-stage Draft 2020-12 common scalar and hash definitions with machine-readable valid and invalid test vectors
+
 ### Supporting and historical documentation
 - `docs/casef_one_pager.md` — one-page overview
 - `measurement/artifact_taxonomy.md` — artifact vocabulary
@@ -137,7 +140,7 @@ CASEF is currently designed as a framework for:
 
 ## Current v0.6.1 implementation boundary
 
-CASEF v0.6.1 currently provides authoritative gate semantics, canonical contract documentation, and documented canonical serialization rules. It does not yet provide executable JSON Schemas, a canonical serializer, a hash verifier, a schema-validation workflow, an executable canonical qualification pipeline, a canonical evidence-generation workflow, or live qualification capability.
+CASEF v0.6.1 currently provides authoritative gate semantics, canonical contract documentation, documented canonical serialization rules, and development-stage common scalar and hash JSON Schemas. It does not yet provide a record, reference, or actor schema, canonical serializer, hash implementation, schema-validation workflow, CI, executable canonical qualification pipeline, canonical evidence-generation workflow, or live qualification capability.
 
 The contracts define which future records and evidence bindings are required. They do not provide the runner, validators, approved rater-protocol instances, executable human-assessment workflow, review workflow, or PI-approved gate rules still required before canonical evidence can be generated or qualification can be issued.
 
@@ -180,6 +183,7 @@ The v0.6.1 contract foundation currently establishes:
 
 - authoritative qualification and gate semantics in `docs/gates.md`;
 - canonical evidence ownership in `docs/canonical_evidence_contract.md`;
+- a first executable tranche of development-stage common scalar and hash schemas with machine-readable valid and invalid vectors;
 - documentation-level contracts for all six canonical record types, including protocol-bound individual human assessment;
 - a documentation-level rater-protocol contract; and
 - documentation-level Context-of-Use and qualification-record contracts.
@@ -222,16 +226,17 @@ If you are opening the repository for the first time:
 1. `docs/casef_one_pager.md`
 2. [`docs/canonical_evidence_contract.md`](docs/canonical_evidence_contract.md)
 3. [`docs/canonical_serialization_contract.md`](docs/canonical_serialization_contract.md)
-4. [`spec/test_spec_contract.md`](spec/test_spec_contract.md)
-5. [`spec/execution_manifest_contract.md`](spec/execution_manifest_contract.md)
-6. [`measurement/run_record_schema.md`](measurement/run_record_schema.md)
-7. [`measurement/validation_record_schema.md`](measurement/validation_record_schema.md)
-8. [`spec/rater_protocol_contract.md`](spec/rater_protocol_contract.md)
-9. [`measurement/rater_record_schema.md`](measurement/rater_record_schema.md)
-10. [`spec/context_of_use.md`](spec/context_of_use.md)
-11. [`docs/gates.md`](docs/gates.md)
-12. [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md)
-13. selected test specifications and supporting vocabularies
+4. [`schemas/v0.6.1/common/README.md`](schemas/v0.6.1/common/README.md)
+5. [`spec/test_spec_contract.md`](spec/test_spec_contract.md)
+6. [`spec/execution_manifest_contract.md`](spec/execution_manifest_contract.md)
+7. [`measurement/run_record_schema.md`](measurement/run_record_schema.md)
+8. [`measurement/validation_record_schema.md`](measurement/validation_record_schema.md)
+9. [`spec/rater_protocol_contract.md`](spec/rater_protocol_contract.md)
+10. [`measurement/rater_record_schema.md`](measurement/rater_record_schema.md)
+11. [`spec/context_of_use.md`](spec/context_of_use.md)
+12. [`docs/gates.md`](docs/gates.md)
+13. [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md)
+14. selected test specifications and supporting vocabularies
 
 ---
 
