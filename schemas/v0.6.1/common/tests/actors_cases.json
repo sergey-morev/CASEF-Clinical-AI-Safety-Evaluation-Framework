@@ -1,0 +1,196 @@
+{
+  "schema_id": "https://raw.githubusercontent.com/sergey-morev/CASEF-Clinical-AI-Safety-Evaluation-Framework/v0.6.1/schemas/v0.6.1/common/actors.schema.json",
+  "cases": [
+    {
+      "name": "actor_kind",
+      "ref": "#/$defs/actor_kind",
+      "valid": [
+        "HUMAN",
+        "TOOL"
+      ],
+      "invalid": [
+        "human",
+        "PERSON",
+        "SYSTEM",
+        "MODEL",
+        "",
+        null
+      ]
+    },
+    {
+      "name": "role_identifier",
+      "ref": "#/$defs/role_identifier",
+      "valid": [
+        "PI",
+        "RATER",
+        "EXECUTION_OPERATOR",
+        "VALIDATOR"
+      ],
+      "invalid": [
+        "",
+        "1RATER",
+        "ROLE/RATER",
+        " RATER",
+        "RATER ",
+        "RATER\n",
+        1,
+        null
+      ]
+    },
+    {
+      "name": "actor_identity_base",
+      "ref": "#/$defs/actor_identity_base",
+      "valid": [
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "HUMAN",
+          "role_id": "RATER"
+        },
+        {
+          "actor_id": "VALIDATOR-TOOL-001",
+          "actor_kind": "TOOL",
+          "role_id": "VALIDATOR"
+        },
+        {
+          "actor_id": "EXECUTION-TOOL-001",
+          "actor_kind": "TOOL",
+          "role_id": "EXECUTION_OPERATOR",
+          "synthetic_owner_context": {
+            "purpose": "composition-only"
+          }
+        }
+      ],
+      "invalid": [
+        {
+          "actor_kind": "HUMAN",
+          "role_id": "RATER"
+        },
+        {
+          "actor_id": "RATER-001",
+          "role_id": "RATER"
+        },
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "HUMAN"
+        },
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "SYSTEM",
+          "role_id": "RATER"
+        },
+        {
+          "actor_id": "invalid/id",
+          "actor_kind": "HUMAN",
+          "role_id": "RATER"
+        },
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "HUMAN",
+          "role_id": "invalid/role"
+        },
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "HUMAN",
+          "role_id": "RATER",
+          "name": "prohibited"
+        },
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "HUMAN",
+          "role_id": "RATER",
+          "personal_name": "prohibited"
+        },
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "HUMAN",
+          "role_id": "RATER",
+          "email": "prohibited@example.org"
+        },
+        [],
+        null
+      ]
+    },
+    {
+      "name": "human_actor_identity_base",
+      "ref": "#/$defs/human_actor_identity_base",
+      "valid": [
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "HUMAN",
+          "role_id": "RATER"
+        },
+        {
+          "actor_id": "AUDITOR-001",
+          "actor_kind": "HUMAN",
+          "role_id": "EXTERNAL_AUDITOR",
+          "synthetic_owner_field": "composition-only"
+        }
+      ],
+      "invalid": [
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "TOOL",
+          "role_id": "RATER"
+        },
+        {
+          "actor_kind": "HUMAN"
+        },
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "HUMAN",
+          "role_id": "RATER",
+          "name": "prohibited"
+        },
+        {
+          "actor_id": "RATER-001",
+          "actor_kind": "HUMAN",
+          "role_id": "RATER",
+          "email": "prohibited@example.org"
+        },
+        null
+      ]
+    },
+    {
+      "name": "tool_actor_identity_base",
+      "ref": "#/$defs/tool_actor_identity_base",
+      "valid": [
+        {
+          "actor_id": "VALIDATOR-TOOL-001",
+          "actor_kind": "TOOL",
+          "role_id": "VALIDATOR"
+        },
+        {
+          "actor_id": "CAPTURE-TOOL-001",
+          "actor_kind": "TOOL",
+          "role_id": "EXECUTION_OPERATOR",
+          "synthetic_owner_field": {
+            "purpose": "composition-only"
+          }
+        }
+      ],
+      "invalid": [
+        {
+          "actor_id": "VALIDATOR-TOOL-001",
+          "actor_kind": "HUMAN",
+          "role_id": "VALIDATOR"
+        },
+        {
+          "actor_kind": "TOOL"
+        },
+        {
+          "actor_id": "VALIDATOR-TOOL-001",
+          "actor_kind": "TOOL",
+          "role_id": "VALIDATOR",
+          "personal_name": "prohibited"
+        },
+        {
+          "actor_id": "VALIDATOR-TOOL-001",
+          "actor_kind": "TOOL",
+          "role_id": "VALIDATOR",
+          "phone": "prohibited"
+        },
+        null
+      ]
+    }
+  ]
+}

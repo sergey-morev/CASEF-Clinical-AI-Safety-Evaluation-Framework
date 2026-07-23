@@ -1,0 +1,253 @@
+{
+  "schema_id": "https://raw.githubusercontent.com/sergey-morev/CASEF-Clinical-AI-Safety-Evaluation-Framework/v0.6.1/schemas/v0.6.1/common/references.schema.json",
+  "cases": [
+    {
+      "name": "record_type",
+      "ref": "#/$defs/record_type",
+      "valid": [
+        "test_spec",
+        "execution_manifest",
+        "run_record",
+        "validation_record",
+        "rater_record",
+        "qualification_record"
+      ],
+      "invalid": [
+        "conversation_audit",
+        "RUN_RECORD",
+        "run-record",
+        "",
+        1,
+        null
+      ]
+    },
+    {
+      "name": "repository_commit",
+      "ref": "#/$defs/repository_commit",
+      "valid": [
+        "0123456789abcdef0123456789abcdef01234567"
+      ],
+      "invalid": [
+        "0123456789abcdef0123456789abcdef0123456",
+        "0123456789abcdef0123456789abcdef012345678",
+        "0123456",
+        "0123456789ABCDEF0123456789ABCDEF01234567",
+        "g123456789abcdef0123456789abcdef01234567",
+        "sha1:0123456789abcdef0123456789abcdef01234567",
+        "main",
+        "0123456789abcdef0123456789abcdef01234567\n",
+        null
+      ]
+    },
+    {
+      "name": "repository_path",
+      "ref": "#/$defs/repository_path",
+      "valid": [
+        "README.md",
+        "docs/gates.md",
+        ".github/workflows/example.yml",
+        "schemas/v0.6.1/common/scalars.schema.json"
+      ],
+      "invalid": [
+        "",
+        "/README.md",
+        "../README.md",
+        "docs/../README.md",
+        "./README.md",
+        "docs//gates.md",
+        "docs\\gates.md",
+        "docs/gates.md/",
+        "docs/gates.md ",
+        1,
+        null
+      ]
+    },
+    {
+      "name": "record_reference_base",
+      "ref": "#/$defs/record_reference_base",
+      "valid": [
+        {
+          "record_type": "run_record",
+          "record_id": "RUN-001",
+          "record_version": 1,
+          "record_reference": "https://example.org/casef/records/run-001",
+          "record_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "record_type": "qualification_record",
+          "record_id": "QUAL-001",
+          "record_reference": "urn:casef:qualification:1",
+          "record_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+          "synthetic_owner_field": {
+            "purpose": "composition-only"
+          }
+        }
+      ],
+      "invalid": [
+        {
+          "record_id": "RUN-001",
+          "record_reference": "https://example.org/casef/records/run-001",
+          "record_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "record_type": "run_record",
+          "record_reference": "https://example.org/casef/records/run-001",
+          "record_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "record_type": "run_record",
+          "record_id": "RUN-001",
+          "record_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "record_type": "run_record",
+          "record_id": "RUN-001",
+          "record_reference": "https://example.org/casef/records/run-001"
+        },
+        {
+          "record_type": "unknown_record",
+          "record_id": "invalid/id",
+          "record_reference": "https://example.org/casef/records/run-001",
+          "record_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "record_type": "run_record",
+          "record_id": "RUN-001",
+          "record_version": 0,
+          "record_reference": "https://example.org/casef/records/run-001",
+          "record_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "record_type": "run_record",
+          "record_id": "RUN-001",
+          "record_reference": "records/run-001",
+          "record_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "record_type": "run_record",
+          "record_id": "RUN-001",
+          "record_reference": "https://example.org/casef/records/run-001",
+          "record_hash": "sha256:bad"
+        },
+        [],
+        null
+      ]
+    },
+    {
+      "name": "artifact_reference_base",
+      "ref": "#/$defs/artifact_reference_base",
+      "valid": [
+        {
+          "artifact_reference": "https://example.org/casef/artifacts/output-001",
+          "artifact_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "artifact_reference": "urn:casef:artifact:prompt:1",
+          "artifact_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+          "synthetic_declared_owner_field": "composition-only"
+        }
+      ],
+      "invalid": [
+        {
+          "artifact_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "artifact_reference": "https://example.org/casef/artifacts/output-001"
+        },
+        {
+          "artifact_reference": "artifacts/output-001",
+          "artifact_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "artifact_reference": "https://example.org/casef/artifacts/output-001",
+          "artifact_hash": "sha256:bad"
+        },
+        {
+          "artifact_reference": 1,
+          "artifact_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        [],
+        null
+      ]
+    },
+    {
+      "name": "versioned_contract_reference_base",
+      "ref": "#/$defs/versioned_contract_reference_base",
+      "valid": [
+        {
+          "contract_reference": "https://example.org/casef/contracts/test-v1",
+          "contract_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "contract_reference": "urn:casef:contract:rater-protocol:1",
+          "contract_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+          "synthetic_declared_owner_field": {
+            "purpose": "composition-only"
+          }
+        }
+      ],
+      "invalid": [
+        {
+          "contract_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "contract_reference": "https://example.org/casef/contracts/test-v1"
+        },
+        {
+          "contract_reference": "contracts/test-v1",
+          "contract_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        {
+          "contract_reference": "https://example.org/casef/contracts/test-v1",
+          "contract_hash": "sha256:bad"
+        },
+        {
+          "contract_reference": 1,
+          "contract_hash": "sha256:0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+        },
+        [],
+        null
+      ]
+    },
+    {
+      "name": "repository_provenance",
+      "ref": "#/$defs/repository_provenance",
+      "valid": [
+        {
+          "repository_commit": "0123456789abcdef0123456789abcdef01234567",
+          "repository_path": "schemas/v0.6.1/common/references.schema.json"
+        }
+      ],
+      "invalid": [
+        {},
+        {
+          "repository_commit": "0123456",
+          "repository_path": "README.md"
+        },
+        {
+          "repository_commit": "0123456789abcdef0123456789abcdef01234567",
+          "repository_path": "/README.md"
+        },
+        {
+          "repository_commit": "0123456789abcdef0123456789abcdef01234567",
+          "repository_path": "docs/../README.md"
+        },
+        {
+          "repository_commit": "0123456789abcdef0123456789abcdef01234567",
+          "repository_path": "docs\\gates.md"
+        },
+        {
+          "repository_commit": "0123456789abcdef0123456789abcdef01234567",
+          "repository_path": "docs/gates.md "
+        },
+        {
+          "repository_commit": "0123456789abcdef0123456789abcdef01234567",
+          "repository_path": "README.md",
+          "extra": true
+        },
+        [],
+        null
+      ]
+    }
+  ]
+}

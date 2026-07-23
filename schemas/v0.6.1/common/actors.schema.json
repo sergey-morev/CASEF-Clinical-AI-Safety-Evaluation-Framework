@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sergey-morev/CASEF-Clinical-AI-Safety-Evaluation-Framework/v0.6.1/schemas/v0.6.1/common/actors.schema.json",
+  "title": "CASEF v0.6.1 common actor identity definitions",
+  "$comment": "Development artifact: not represented as released until the immutable v0.6.1 Git tag exists. Actor definitions are role-bound composition bases and do not independently establish authority, eligibility, expertise, or qualification.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false,
+  "$defs": {
+    "actor_kind": {
+      "type": "string",
+      "enum": [
+        "HUMAN",
+        "TOOL"
+      ],
+      "description": "Exact common CASEF v0.6.1 accountable-actor kinds. An evaluated model is not automatically an accountable CASEF actor."
+    },
+    "role_identifier": {
+      "$ref": "scalars.schema.json#/$defs/stable_identifier",
+      "description": "Role identifier, not a personal name. CASEF v0.6.1 does not create one universal actor-role enum. Exact record or protocol owners may narrow or const-bind the role; examples such as PI, RATER, EXECUTION_OPERATOR, and VALIDATOR do not authorize those roles in every object."
+    },
+    "actor_identity_base": {
+      "type": "object",
+      "required": [
+        "actor_id",
+        "actor_kind",
+        "role_id"
+      ],
+      "properties": {
+        "actor_id": {
+          "$ref": "scalars.schema.json#/$defs/stable_identifier"
+        },
+        "actor_kind": {
+          "$ref": "#/$defs/actor_kind"
+        },
+        "role_id": {
+          "$ref": "#/$defs/role_identifier"
+        }
+      },
+      "propertyNames": {
+        "not": {
+          "enum": [
+            "name",
+            "personal_name",
+            "full_name",
+            "display_name",
+            "email",
+            "phone"
+          ]
+        }
+      },
+      "description": "Open common actor-identity composition base. actor_id is a stable public operational identifier, and public operational content does not use a personal name; a private controlled identity mapping may exist outside the public repository. role_id binds the responsibility represented in the containing object. Actor identity alone does not prove authority, eligibility, expertise, independence, approval, or successful execution. Explicit personal-name and contact keys are structurally prohibited, but semantic privacy still requires review. Final record-specific schemas declare authorized additional fields and close the complete boundary.",
+      "$comment": "This base intentionally remains open for explicitly declared owner-specific composition. Its openness is not authorization for arbitrary canonical extension fields."
+    },
+    "human_actor_identity_base": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/actor_identity_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actor_kind": {
+              "const": "HUMAN"
+            }
+          }
+        }
+      ],
+      "description": "Open human-actor identity composition base. Human identity does not establish qualification, independence, approval authority, or decision authority. Rater qualifications, approval basis, conflicts, eligibility, and authorization basis remain owner-specific fields in later schemas."
+    },
+    "tool_actor_identity_base": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/actor_identity_base"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "actor_kind": {
+              "const": "TOOL"
+            }
+          }
+        }
+      ],
+      "description": "Open tool-actor identity composition base. A tool may prepare, record, capture, or produce data where an owning contract permits. A tool does not become a human approving authority, PI, rater, or qualification decision authority merely through this identity structure."
+    }
+  }
+}
