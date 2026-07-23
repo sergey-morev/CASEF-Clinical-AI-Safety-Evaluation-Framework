@@ -120,7 +120,7 @@ CASEF is currently designed as a framework for:
 - [`measurement/qualification_record_schema.md`](measurement/qualification_record_schema.md) — documentation-level qualification-record contract
 
 ### Executable schema foundation
-- [`schemas/v0.6.1/common/`](schemas/v0.6.1/common/) — development-stage Draft 2020-12 common scalar and hash definitions with machine-readable valid and invalid test vectors
+- [`schemas/v0.6.1/common/`](schemas/v0.6.1/common/) — development-stage Draft 2020-12 common scalar, hash, reference-base, repository-provenance, and actor-identity definitions with machine-readable valid and invalid test vectors
 
 ### Supporting and historical documentation
 - `docs/casef_one_pager.md` — one-page overview
@@ -140,7 +140,7 @@ CASEF is currently designed as a framework for:
 
 ## Current v0.6.1 implementation boundary
 
-CASEF v0.6.1 currently provides authoritative gate semantics, canonical contract documentation, documented canonical serialization rules, and development-stage common scalar and hash JSON Schemas. It does not yet provide a record, reference, or actor schema, canonical serializer, hash implementation, schema-validation workflow, CI, executable canonical qualification pipeline, canonical evidence-generation workflow, or live qualification capability.
+CASEF v0.6.1 currently provides authoritative gate semantics, canonical contract documentation, documented canonical serialization rules, and development-stage common scalar, hash, reference-base, repository-provenance, and actor-identity JSON Schemas. It does not yet provide a canonical record schema, complete owner-specific reference schema, canonical serializer, hash implementation, schema-validation workflow, CI, executable canonical qualification pipeline, canonical evidence-generation workflow, or live qualification capability.
 
 The contracts define which future records and evidence bindings are required. They do not provide the runner, validators, approved rater-protocol instances, executable human-assessment workflow, review workflow, or PI-approved gate rules still required before canonical evidence can be generated or qualification can be issued.
 
@@ -183,7 +183,7 @@ The v0.6.1 contract foundation currently establishes:
 
 - authoritative qualification and gate semantics in `docs/gates.md`;
 - canonical evidence ownership in `docs/canonical_evidence_contract.md`;
-- a first executable tranche of development-stage common scalar and hash schemas with machine-readable valid and invalid vectors;
+- executable development-stage common scalar, hash, reference-base, repository-provenance, and actor-identity schemas with machine-readable valid and invalid vectors;
 - documentation-level contracts for all six canonical record types, including protocol-bound individual human assessment;
 - a documentation-level rater-protocol contract; and
 - documentation-level Context-of-Use and qualification-record contracts.

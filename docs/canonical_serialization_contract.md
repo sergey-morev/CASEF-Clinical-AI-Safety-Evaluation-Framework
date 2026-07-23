@@ -217,15 +217,30 @@ Specialized references may add `repository_commit`, `implementation_reference`, 
 
 Test, manifest, validator, rater-protocol, Context-of-Use, and gate-policy references remain specialized compositions. A protocol or Context-of-Use reference must not be typed as a canonical-record reference. Reference presence does not transfer ownership, and references must bind exact immutable content.
 
-Future shared JSON Schemas define the exact key sets. This contract does not create those schemas.
+The development-stage [`schemas/v0.6.1/common/references.schema.json`](../schemas/v0.6.1/common/references.schema.json) now defines the common base key sets for the three distinct reference families. These bases are composition components, not universal complete reference objects. Owner-specific stable IDs, exact versions, and authorized supplemental fields remain specialized. Final completed owner-specific objects close their boundary with `unevaluatedProperties: false`; direct validation against a base establishes only the common base obligations and is not complete-reference validation.
 
 ## 13. Reference locators
 
 A canonical content locator is an absolute URI. For repository-owned content, exact provenance additionally binds `repository_commit` and `repository_path`.
 
-The repository commit is the full immutable Git commit SHA. A branch name alone is insufficient. A relative filesystem path alone is insufficient. The repository path is relative to the repository root and must not escape it.
+For CASEF v0.6.1 executable repository provenance:
 
-The URI, commit, and path must resolve to the same intended content. A content hash remains required where the owner contract requires it. A locator proves location intent, not content correctness or authority.
+- `repository_commit` is a full 40-character lowercase hexadecimal Git commit object ID; branch names and abbreviated SHAs are insufficient; and
+- `repository_path` is a non-empty repository-root-relative forward-slash path with no leading slash, backslash, whitespace, empty segment, `.` or `..` segment, or trailing slash.
+
+A commit change or Git object-format migration requires a reviewed schema revision. Repository provenance does not replace the applicable absolute URI or content hash. The URI, commit, and path must resolve to the same intended content. Lexical path validity does not prove existence, content correctness, or authority.
+
+### Actor representation
+
+The shared actor-base keys are:
+
+- `actor_id`;
+- `actor_kind`; and
+- `role_id`.
+
+`actor_kind` is exactly `HUMAN` or `TOOL`. CASEF v0.6.1 creates no universal global `role_id` enum; exact record and protocol owners narrow or const-bind roles. Role-bound actor bases remain compositional, and final owner-specific objects close their completed boundary.
+
+Personal names and direct contact fields are not part of public operational actor identity. Actor identity alone does not establish authority, eligibility, expertise, independence, approval, or successful execution.
 
 ## 14. Hash representation and algorithm
 
@@ -328,8 +343,8 @@ They may serve only according to their current canonical status as historical ma
 
 ## 21. Current implementation boundary
 
-All six canonical record contracts and the canonical serialization decisions are documented. Development-stage common scalar and hash JSON Schemas and machine-readable valid and invalid test vectors now exist.
+All six canonical record contracts and the canonical serialization decisions are documented. Development-stage common scalar, hash, reference-base, repository-provenance, and actor-identity JSON Schemas and their machine-readable valid and invalid test vectors now exist.
 
-No record, reference, or actor schema exists. No schema catalog, canonical serializer, RFC 8785 implementation, SHA-256 computation or verification implementation, executable cross-record validator, CI workflow, or serialized canonical record instance exists.
+No canonical record schema or complete owner-specific reference schema exists. No schema catalog, canonical serializer, RFC 8785 implementation, SHA-256 computation or verification implementation, executable cross-record validator, CI workflow, serialized canonical record instance, or canonical evidence-generation workflow exists.
 
 No approved rater-protocol or gate-policy instance exists, and no canonical qualification pipeline is executable.

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sergey-morev/CASEF-Clinical-AI-Safety-Evaluation-Framework/v0.6.1/schemas/v0.6.1/common/references.schema.json",
+  "title": "CASEF v0.6.1 common reference definitions",
+  "$comment": "Development artifact: not represented as released until the immutable v0.6.1 Git tag exists. Object definitions in this file are composition bases unless explicitly described as complete.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false,
+  "$defs": {
+    "record_type": {
+      "type": "string",
+      "enum": [
+        "test_spec",
+        "execution_manifest",
+        "run_record",
+        "validation_record",
+        "rater_record",
+        "qualification_record"
+      ],
+      "description": "Exact six-record canonical CASEF vocabulary. Conversation audit is not a seventh record, and a reference does not transfer ownership."
+    },
+    "repository_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}(?![\\s\\S])",
+      "description": "CASEF v0.6.1 repository provenance uses a full 40-character lowercase Git commit object ID. Branch names and abbreviated SHAs are prohibited. This locator does not replace content_hash; a future repository object-format migration requires a reviewed schema revision."
+    },
+    "repository_path": {
+      "type": "string",
+      "pattern": "^(?!/)(?:(?!\\.{1,2}(?:/|$))[^/\\\\\\s]+)(?:/(?!(?:\\.{1,2})(?:/|$))[^/\\\\\\s]+)*(?![\\s\\S])",
+      "description": "Non-empty repository-root-relative forward-slash path with no leading slash, backslash, whitespace, empty segment, dot segment, dot-dot segment, or trailing slash. Lexical validity does not prove that the path exists or resolves to the intended content."
+    },
+    "record_reference_base": {
+      "type": "object",
+      "required": [
+        "record_type",
+        "record_id",
+        "record_reference",
+        "record_hash"
+      ],
+      "properties": {
+        "record_type": {
+          "$ref": "#/$defs/record_type"
+        },
+        "record_id": {
+          "$ref": "scalars.schema.json#/$defs/stable_identifier"
+        },
+        "record_version": {
+          "$ref": "scalars.schema.json#/$defs/record_version"
+        },
+        "record_reference": {
+          "$ref": "scalars.schema.json#/$defs/absolute_uri"
+        },
+        "record_hash": {
+          "$ref": "hashes.schema.json#/$defs/content_hash"
+        }
+      },
+      "description": "Open common composition base for a canonical-record reference. record_version is required only where the referenced owner defines it; owner-specific schemas determine whether it is required, prohibited, or supplemented. Final owner-specific schemas close the completed object. Direct validation against this base is not complete-reference validation.",
+      "$comment": "This base intentionally remains open for explicitly declared owner-specific composition. Its openness is not authorization for arbitrary canonical extension fields."
+    },
+    "artifact_reference_base": {
+      "type": "object",
+      "required": [
+        "artifact_reference",
+        "artifact_hash"
+      ],
+      "properties": {
+        "artifact_reference": {
+          "$ref": "scalars.schema.json#/$defs/absolute_uri"
+        },
+        "artifact_hash": {
+          "$ref": "hashes.schema.json#/$defs/content_hash"
+        }
+      },
+      "description": "Open common composition base for an artifact reference. Exact owner-specific schemas may declare media_type, byte_length, artifact_role, derivative provenance, or transformation bindings only where authorized; their absence from this base does not prohibit later declared composition. Direct base validation does not establish artifact eligibility or authenticity.",
+      "$comment": "This base intentionally remains open for explicitly declared owner-specific composition. Its openness is not authorization for arbitrary canonical extension fields."
+    },
+    "versioned_contract_reference_base": {
+      "type": "object",
+      "required": [
+        "contract_reference",
+        "contract_hash"
+      ],
+      "properties": {
+        "contract_reference": {
+          "$ref": "scalars.schema.json#/$defs/absolute_uri"
+        },
+        "contract_hash": {
+          "$ref": "hashes.schema.json#/$defs/content_hash"
+        }
+      },
+      "description": "Open common composition base for a versioned referenced input. Exact owner-specific schemas must add their stable ID and exact version using owner-specific field names. Test, manifest, validator, rater-protocol, Context-of-Use, and gate-policy references remain specialized compositions; protocol and Context-of-Use references are not canonical-record references. Direct base validation does not establish completeness, eligibility, approval, or authority.",
+      "$comment": "This base intentionally remains open for explicitly declared owner-specific composition. Its openness is not authorization for arbitrary canonical extension fields."
+    },
+    "repository_provenance": {
+      "type": "object",
+      "required": [
+        "repository_commit",
+        "repository_path"
+      ],
+      "properties": {
+        "repository_commit": {
+          "$ref": "#/$defs/repository_commit"
+        },
+        "repository_path": {
+          "$ref": "#/$defs/repository_path"
+        }
+      },
+      "additionalProperties": false,
+      "description": "Complete nested repository-provenance object. The surrounding reference still requires its applicable absolute URI and content hash, and commit and path must resolve to the same intended content. Provenance validity does not establish correctness or authority."
+    }
+  }
+}
